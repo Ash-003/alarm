@@ -1,0 +1,128 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<windows.h>
+#include<MMsystem.h>
+
+
+int start_day(int yr)
+{
+
+    int day;
+    day = (((yr-1)*365)+((yr-1)/4)- ((yr-1)/100) +((yr)/400)+1)%7 ;
+    return day;
+}
+void print_calendar()
+{
+
+    system("color B0");
+    int yr,month;
+    printf("\n Enter year : ");
+    scanf("%d",&yr);
+
+    char *months[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+
+    int daysinmonth[]={31,28,31,30,31,30,31,31,30,31,30,31};
+
+    if((yr%4==0&&yr%100!=0)||yr%400==0)  //leap year
+        daysinmonth[1]=29;
+
+    int startday,day,weekday=0;
+    startday=start_day(yr);
+    printf("\n\n\n                %d",yr);
+    printf("\n                ****   \n");
+
+    for(month=0;month<12;month++)
+    {
+        int noofdays;
+        noofdays=daysinmonth[month];
+        printf("\n              %s              ",months[month]);
+        printf("\n\n   Su   Mo   Tu   We   Th   Fr   Sa   \n");
+        printf("\n");
+
+        for(weekday=0;weekday<startday;weekday++)
+            printf("     ");
+
+
+        for(day=1;day<=noofdays;day++)
+        {
+            printf("%5d",day);
+            if(++weekday>6)
+            {
+                printf("\n");
+                weekday=0;
+            }
+            startday=weekday;
+        }
+        printf("\n");
+
+    }
+    printf("\n\n ************************************\n");
+    int choice;
+
+    printf("\n PRESS ANY KEY TO CONTINUE.........  ");
+    getch();
+    printf("\n");
+
+
+}
+
+void timerapp()
+{
+    int hrs,mins,secs;
+    system("color 20");
+    int timer;
+    printf("\n Set a timer value(hrs mins secs) : ");
+    scanf("%d %d %d",&hrs,&mins,&secs);
+    sleep(1);
+    int a=hrs,b=mins,c=secs;
+    if(a==0&&c==0&&b!=0)
+        {
+            printf("\n TIMER SET FOR %d mins",b);
+        }
+        else if(a==0&&b!=0&&c!=0)
+        {
+            printf("\n TIMER SET FOR %d mins %d secs",b,c);
+        }
+
+        else if(a==0&&b==0&&c!=0)
+        {
+            printf("\n TIMER SET FOR %d secs",c);
+        }
+        else if(a!=0&&b!=0&&c==0)
+            printf("\n TIMER SET FOR %d hrs %d mins",a,b);
+        else if(a!=0&&b!=0&&c!=0)
+            printf("\n TIMER SET FOR %d hrs %d mins %d secs",a,b,c);
+        else if(a!=0&&b==0&&c!=0)
+            printf("\n TIMER SET FOR %d hrs % secs",a,c);
+        else if(a!=0&&b==0&&c==0)
+            printf("\n TIMER SET FOR %d hrs",a);
+
+    sleep(2);
+
+
+
+    int i=3;
+    while(i!=0)
+    {
+        system("cls");
+        printf("\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t\tTimer starts in %d \n",i);
+        sleep(1);i--;
+    }
+
+    PlaySound(TEXT("C:\\Users\\sesha\\Downloads\\0117. Deep Meditation - AShamaluevMusic.wav"),NULL,SND_ASYNC);
+
+    system("cls");
+    while(1)
+    {
+
+
+        printf("\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t\t    TIMER STARTED\n");
+        printf("\t\t\t\t\t\t\t\t\t\t\t    --------------");
+        if(a==0&&c==0&&b!=0)
+        {
+            printf("\n\n\t\t\t\t\t\t\t\t\t\t\tTIMER SET FOR %d mins",b);
+        }
+        else if(a==0&&b!=0&&c!=0)
+        {
+            printf("\n\n\t\t\t\t\t\t\t\t\t\t\tTIMER SET FOR %d mins %d secs",b,c);
+        }
